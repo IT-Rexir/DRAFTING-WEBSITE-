@@ -8,7 +8,7 @@
 body{
     background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
     color:white;
-    overflow:hidden;
+    overflow-x:hidden; /* FIXED (was overflow:hidden) */
 }
 
 #intro{
@@ -262,7 +262,7 @@ section.active{
     box-shadow:0 0 15px #6a5acd;
 }
 
-/* ================= LIGHTBOX POPUP ================= */
+/* LIGHTBOX */
 #lightboxOverlay{
     position:fixed;
     top:0;
@@ -291,3 +291,50 @@ section.active{
     color:white;
     cursor:pointer;
 }
+
+/* ================= MOBILE RESPONSIVE FIX ================= */
+@media (max-width: 768px){
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+        padding:15px 5%;
+        text-align:center;
+    }
+
+    nav ul{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    #home .home-container{
+        flex-direction:column;
+        text-align:center;
+        gap:30px;
+    }
+
+    #home .home-left h1{
+        font-size:2rem;
+    }
+
+    #home .home-left p{
+        font-size:1.1rem;
+    }
+
+    #home .home-right{
+        text-align:center;
+    }
+
+    #home .home-right img{
+        max-width:80%;
+    }
+
+    #intro h1{
+        font-size:2.5rem;
+    }
+
+    section{
+        padding:120px 5% 80px 5%;
+    }
+        }
