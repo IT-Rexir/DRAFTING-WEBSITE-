@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Drafting</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="intro">
+    <h1>Technical Drafting</h1>
+</div>
+
+<nav>
+    <div class="logo-area" onclick="showSection('home')">
+        <img src="images (1).png" alt="Logo">
+        <div>
+            <h2>TD - Technical Drafting</h2>
+            <p class="tagline">Jagobiao National High School</p>
+        </div>
+    </div>
+
+    <ul>
+        <li><a href="#" onclick="showSection('home')">Home</a></li>
+        <li><a href="#" onclick="showSection('member')">Members</a></li>
+        <li><a href="#" onclick="showSection('projects-contact')">Projects</a></li>
+    </ul>
+</nav>
+
+<section id="home" class="active">
+    <div class="home-container">
+        <div class="home-left">
+            <h1>What Is Technical Drafting?</h1>
+            <p>
+                creating accurate drawings that show how objects or structures are designed and built. It focuses on using measurements, symbols, and details to clearly communicate designs.
+            </p>
+        </div>
+        <div class="home-right">
+            <img src="file_000000005aa8720887e5c996963042ec.png">
+        </div>
+    </div>
+</section>
+
+<section id="member">
+    <h1>Our Members</h1>
+    <p>Meet our technical drafting student.</p>
+    <div class="member-grid">
+        <div class="member-card"><img src="Trisha.jpg"><p class="member-name">Sajol Trisha</p></div>
+        <div class="member-card"><img src="yanyan.jpg"><p class="member-name">Beltran Arianne</p></div>
+        <div class="member-card"><img src="sayao.jpg"><p class="member-name">Sayao Dennisse</p></div>
+        <div class="member-card"><img src="viray.jpg"><p class="member-name">Viray Matthew</p></div>
+        <div class="member-card"><img src="Tabuan.jpeg"><p class="member-name">Tabuan Jul Rex</p></div>
+        <div class="member-card"><img src="orlanes.jpg"><p class="member-name">Orlanes Clien</p></div>
+        <div class="member-card"><img src="montero.jpeg"><p class="member-name">Montero Rey Joseph</p></div>
+    </div>
+</section>
+
+<section id="projects-contact">
+    <h1>Our Projects</h1>
+      <p>Some of our drafting projects.</p>
+    <div class="project-grid">
+        <img src="project1.jpg">
+        <img src="td2.jpeg">
+        <img src="td5.jpeg">
+        <img src="td3.jpeg">
+        <img src="td4.jpeg">
+    </div>
+
+    <h1 style="margin-top:50px;">Contact Us</h1>
+      <p>Send us a message and we’ll get back to you!</p>
+    <form class="contact-form" id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <p id="successMessage" style="display:none; margin-top:15px; color: red;">
+        Message sent successfully!
+    </p>
+</section>
+
+<!-- ================= LIGHTBOX OVERLAY ================= -->
+<div id="lightboxOverlay">
+    <span onclick="closeLightbox()">×</span>
+    <img src="">
+</div>
+
+<script>
+window.addEventListener("load",()=>{
+    setTimeout(()=>{
+        document.getElementById("intro").style.opacity="0";
+        document.getElementById("intro").style.visibility="hidden";
+    },2500);
+});
+
+function showSection(id){
+    document.querySelectorAll("section").forEach(sec=>{
+        sec.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+}
+
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    await fetch("https://formspree.io/f/xzdajbpp", {
+        method: "POST",
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    form.reset();
+    document.getElementById("successMessage").style.display = "block";
+});
+
+// ================= LIGHTBOX FUNCTIONALITY =================
+const lightbox = document.getElementById("lightboxOverlay");
+const lightboxImg = lightbox.querySelector("img");
+
+document.querySelectorAll(".project-grid img, .member-card img").forEach(img=>{
+    img.addEventListener("click", ()=>{
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+    });
+});
+
+function closeLightbox(){
+    lightbox.style.display = "none";
+}
+lightbox.addEventListener("click", e=>{
+    if(e.target === lightbox) closeLightbox();
+});
+</script>
+
+</body>
+</html>
