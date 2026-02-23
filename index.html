@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technical Drafting</title>
-
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,9 +15,9 @@
 
 <nav>
     <div class="logo-area" onclick="showSection('home')">
-        <img src="images (1).png" alt="Logo">
+        <img src="images (1).png" alt="Jagobiao Logo">
         <div>
-            <h2>TD - Technical Drafting</h2>
+            <h2>Technical Drafting</h2>
             <p class="tagline">Jagobiao National High School</p>
         </div>
     </div>
@@ -26,10 +25,12 @@
     <ul>
         <li><a href="#" onclick="showSection('home')">Home</a></li>
         <li><a href="#" onclick="showSection('member')">Members</a></li>
-        <li><a href="#" onclick="showSection('projects-contact')">Projects</a></li>
+        <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+        <li><a href="#" onclick="showSection('contact')">Contact</a></li>
     </ul>
 </nav>
 
+<!-- HOME -->
 <section id="home" class="active">
     <div class="home-container">
         <div class="home-left">
@@ -38,12 +39,25 @@
                 Creating accurate drawings that show how objects or structures are designed and built. It focuses on using measurements, symbols, and details to clearly communicate designs.
             </p>
         </div>
+
         <div class="home-right">
-            <img src="file_000000005aa8720887e5c996963042ec.png">
+            <img src="file_000000005aa8720887e5c996963042ec.png" alt="TD Logo">
         </div>
+    </div>
+
+    <div class="video-text">
+        <h2>ICT Student that we interview what they experience of Technical drafting</h2>
+    </div>
+
+    <div class="video-container">
+        <video controls>
+            <source src="video_20260222_130208_edit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 </section>
 
+<!-- MEMBERS -->
 <section id="member">
     <h1>Our Members</h1>
     <p>Meet our technical drafting student.</p>
@@ -58,19 +72,27 @@
     </div>
 </section>
 
-<section id="projects-contact">
+<!-- PROJECTS -->
+<section id="projects">
     <h1>Our Projects</h1>
-      <p>Some of our drafting projects.</p>
+    <p>Some of our drafting projects.</p>
     <div class="project-grid">
-        <img src="project1.jpg">
-        <img src="td2.jpeg">
-        <img src="td5.jpeg">
-        <img src="td3.jpeg">
-        <img src="td4.jpeg">
+        <img src="td1.png">
+        <img src="td2.png">
+        <img src="td3.png">
+        <img src="td4.png">
+        <img src="td5.png">
+        <img src="td6.png">
+        <img src="td7.png">
+        <img src="td8.png">
     </div>
+</section>
 
-    <h1 style="margin-top:50px;">Contact Us</h1>
-      <p>Send us a message and we’ll get back to you!</p>
+<!-- CONTACT -->
+<section id="contact">
+    <h1>Contact Us</h1>
+    <p>Send us a message and we’ll get back to you!</p>
+
     <form class="contact-form" id="contactForm">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
@@ -78,12 +100,12 @@
         <button type="submit">Send Message</button>
     </form>
 
-    <p id="successMessage" style="display:none; margin-top:15px; color: red;">
+    <p id="successMessage" style="display:none; margin-top:15px; color:red;">
         Message sent successfully!
     </p>
 </section>
 
-<!-- ================= LIGHTBOX OVERLAY ================= -->
+<!-- LIGHTBOX -->
 <div id="lightboxOverlay">
     <span onclick="closeLightbox()">×</span>
     <img src="">
@@ -106,27 +128,23 @@ function showSection(id){
 
 document.getElementById("contactForm").addEventListener("submit", async function(e) {
     e.preventDefault();
-
     const form = e.target;
     const data = new FormData(form);
 
     await fetch("https://formspree.io/f/xzdajbpp", {
         method: "POST",
         body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
     });
 
     form.reset();
     document.getElementById("successMessage").style.display = "block";
 });
 
-// ================= LIGHTBOX FUNCTIONALITY =================
 const lightbox = document.getElementById("lightboxOverlay");
 const lightboxImg = lightbox.querySelector("img");
 
-document.querySelectorAll(".project-grid img, .member-card img").forEach(img=>{
+document.querySelectorAll(".member-card img, .project-grid img, #home .home-right img").forEach(img=>{
     img.addEventListener("click", ()=>{
         lightbox.style.display = "flex";
         lightboxImg.src = img.src;
